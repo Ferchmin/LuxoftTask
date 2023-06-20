@@ -21,6 +21,7 @@ class MovieListViewController: UIViewController {
         }
     }
 
+    var onShowMovieDetails: ((MBMovie) -> Void)?
     var viewModel: MovieListViewModel?
 
     private var disposeBag = DisposeBag()
@@ -53,5 +54,10 @@ class MovieListViewController: UIViewController {
         })
 
         viewModel.dataSource.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+
+        tableView.rx.modelSelected(MovieCellViewModel.self)
+            .flatMapLatest { $0.model }
+            .subscribe(onNext: { [weak self] in self?.onShowMovieDetails?($0) })
+            .disposed(by: disposeBag)
     }
 }

@@ -19,10 +19,8 @@ struct MBMovie: Codable, Equatable {
     let identifier: Int
     let title: String
     let releaseDate: String
-    let rating: Double
+    let rating: Float
     let description: String
-    let duration: String?
-    let genreIdentifiers: [Int]
 
     private let posterPath: String
 
@@ -34,11 +32,9 @@ struct MBMovie: Codable, Equatable {
         case identifier = "id"
         case title = "title"
         case releaseDate = "release_date"
-        case duration = "duration"
         case rating = "vote_average"
         case posterPath = "poster_path"
         case description = "overview"
-        case genreIdentifiers = "genre_ids"
     }
 }
 

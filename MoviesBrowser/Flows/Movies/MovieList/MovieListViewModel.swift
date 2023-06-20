@@ -18,15 +18,21 @@ struct MovieListViewModel {
     // out
     var title: Observable<String> { .just("Now playing") }
     var dataSource: Observable<[AnimatableSectionModel<String, MovieCellViewModel>]> {
-        moviesSubject.distinctUntilChanged()
-            .map { $0.map { MovieCellViewModel(model: $0) } }
+        Observable.combineLatest(moviesSubject.distinctUntilChanged(),
+                                 favoritesRepository.favorites.distinctUntilChanged())
+            .map { models, favorites in
+                models.map { MovieCellViewModel(model: $0,
+                                                isFavorite: favorites.contains($0.identifier)) }
+            }
             .map { [.init(model: "section", items: $0)] }
     }
 
+    private let favoritesRepository: FavoritesRepositoryProtocol
     private let moviesSubject = BehaviorSubject<[MBMovie]>(value: [])
     private let disposeBag = DisposeBag()
 
-    init() {
+    init(favoritesRepository: FavoritesRepositoryProtocol) {
+        self.favoritesRepository = favoritesRepository
         setupBinding()
     }
 

@@ -14,15 +14,17 @@ struct MovieCellViewModel: IdentifiableType {
     // out
     var title: Observable<String> { model.map { $0.title } }
     var releaseDate: Observable<String> { model.map { $0.releaseDate } }
-    var duration: Observable<String?> { model.map { $0.duration } }
+    var description: Observable<String> { model.map { $0.description } }
     var posterUrl: Observable<URL> { model.map { $0.posterUrl } }
 
     var identity: String
 
-    private let model: Observable<MBMovie>
+    let model: Observable<MBMovie>
+    let isFavorite: Observable<Bool>
 
-    init(model: MBMovie) {
+    init(model: MBMovie, isFavorite: Bool) {
         self.model = .just(model)
+        self.isFavorite = .just(isFavorite)
         self.identity = "\(model.identifier)"
     }
 }

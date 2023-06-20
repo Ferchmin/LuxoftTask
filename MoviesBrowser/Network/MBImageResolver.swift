@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 
 struct MBImageResolver {
-
     private let url: URL
     private let parameters = ["api_key": Config.apiKey]
     private var dataTask: URLSessionDataTask?

@@ -14,14 +14,16 @@ class MovieCell: UITableViewCell, LoadableCell {
     @IBOutlet private var coverImageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var releaseDateLabel: UILabel!
-    @IBOutlet private var durationLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var favoriteView: UIImageView!
 
     private var disposeBag = DisposeBag()
 
     func setup(viewModel: MovieCellViewModel) {
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: disposeBag)
         viewModel.releaseDate.bind(to: releaseDateLabel.rx.text).disposed(by: disposeBag)
-        viewModel.duration.bind(to: durationLabel.rx.text).disposed(by: disposeBag)
+        viewModel.description.bind(to: descriptionLabel.rx.text).disposed(by: disposeBag)
+        viewModel.isFavorite.map { !$0 }.bind(to: favoriteView.rx.isHidden).disposed(by: disposeBag)
         viewModel.posterUrl
             .flatMapLatest { MBImageResolver(url: $0).asObservable() }
             .bind(to: coverImageView.rx.image)
