@@ -17,6 +17,7 @@ extension Storyboard {
 
     static func instantiate() -> InitialControllerType {
         let storyboard = UIStoryboard(name: Self.name, bundle: Bundle.main)
+        // swiftlint:disable force_cast
         return storyboard.instantiateInitialViewController() as! InitialControllerType
     }
 }

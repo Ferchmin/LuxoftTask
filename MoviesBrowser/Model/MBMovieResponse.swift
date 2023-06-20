@@ -20,7 +20,7 @@ struct NowPlayingQuery: MBQuery {
 
     var url: URL { Config.baseUrl.appendingPathComponent("/movie/now_playing") }
     var method: HttpMethod { .get }
-    var parameters: [String : Any] { ["page": page] }
+    var parameters: [String: Any] { ["page": page] }
 
     private let page: Int
 
@@ -34,7 +34,7 @@ struct SearchMoviesQuery: MBQuery {
 
     var url: URL { Config.baseUrl.appendingPathComponent("/search/movie") }
     var method: HttpMethod { .get }
-    var parameters: [String : Any] {
+    var parameters: [String: Any] {
          ["page": page,
           "query": query]
     }

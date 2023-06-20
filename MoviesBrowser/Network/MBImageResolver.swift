@@ -55,7 +55,7 @@ struct MBImageResolver {
             }
         }
 
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, _, _ in
             if let data = data {
                 DispatchQueue.main.async {
                     let image = UIImage(data: data)
@@ -91,4 +91,3 @@ extension MBImageResolver {
         }
     }
 }
-

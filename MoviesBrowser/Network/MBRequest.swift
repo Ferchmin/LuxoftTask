@@ -29,7 +29,7 @@ class MBRequest<Query: MBQuery> {
     }
 
     func send(completion: @escaping (Result<Query.ResultType, Error>) -> Void) {
-        task = URLSession.shared.dataTask(with: request) { data, response, error in
+        task = URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
                 completion(.failure(error))
                 return

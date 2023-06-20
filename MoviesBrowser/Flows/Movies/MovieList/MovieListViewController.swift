@@ -35,7 +35,8 @@ class MovieListViewController: UIViewController, UISearchBarDelegate {
         viewModel.reloadSubject.onNext(())
     }
 
-    private typealias DataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MovieCellViewModel>>
+    private typealias DataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String,
+                                                                                                 MovieCellViewModel>>
 
     private func setup(with viewModel: MovieListViewModel) {
         self.viewModel = viewModel
