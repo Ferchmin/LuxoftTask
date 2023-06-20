@@ -17,15 +17,16 @@ struct MBMoviesResponse: Codable, Equatable {
 
 struct MBMovie: Codable, Equatable {
     let identifier: Int
-    let title: String
-    let releaseDate: String
-    let rating: Float
-    let description: String
+    let title: String?
+    let releaseDate: String?
+    let rating: Float?
+    let description: String?
 
-    private let posterPath: String
+    private let posterPath: String?
 
-    var posterUrl: URL {
-        Config.imageUrl.appendingPathComponent(posterPath)
+    var posterUrl: URL? {
+        guard let posterPath = posterPath else { return nil }
+        return Config.imageUrl.appendingPathComponent(posterPath)
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -44,8 +45,31 @@ struct NowPlayingQuery: MBQuery {
     var url: URL { Config.baseUrl.appendingPathComponent("/movie/now_playing") }
     var method: HttpMethod { .get }
     var parameters: [String : Any] {
-        ["language": "en-US",
-         "page": "undefined",
-         "api_key": "581158870b0759a89b6770163d7ac138"]
+         ["page": page]
+    }
+
+    private let page: Int
+
+    init(page: Int) {
+        self.page = page
+    }
+}
+
+struct SearchMoviesQuery: MBQuery {
+    typealias ResultType = MBMoviesResponse
+
+    var url: URL { Config.baseUrl.appendingPathComponent("/search/movie") }
+    var method: HttpMethod { .get }
+    var parameters: [String : Any] {
+         ["page": page,
+          "query": query]
+    }
+
+    private let query: String
+    private let page: Int
+
+    init(query: String, page: Int) {
+        self.query = query
+        self.page = page
     }
 }

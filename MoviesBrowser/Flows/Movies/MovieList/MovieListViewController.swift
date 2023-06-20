@@ -13,7 +13,8 @@ enum MovieList: Storyboard {
     typealias InitialControllerType = MovieListViewController
 }
 
-class MovieListViewController: UIViewController {
+class MovieListViewController: UIViewController, UISearchBarDelegate {
+    @IBOutlet private var searchBar: UISearchBar!
     @IBOutlet private var tableView: UITableView! {
         didSet {
             tableView.register(UINib(nibName: MovieCell.cellIdentifier, bundle: nil),
@@ -59,5 +60,33 @@ class MovieListViewController: UIViewController {
             .flatMapLatest { $0.model }
             .subscribe(onNext: { [weak self] in self?.onShowMovieDetails?($0) })
             .disposed(by: disposeBag)
+
+        tableView.rx.scrolledToBottom
+            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
+            .bind(to: viewModel.loadMoreSubject)
+            .disposed(by: disposeBag)
+
+        searchBar.rx.text
+            .map { $0 ?? "" }
+            .distinctUntilChanged()
+            .debounce(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
+            .bind(to: viewModel.searchQuerySubject)
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension Reactive where Base: UIScrollView {
+    var scrolledToBottom: Observable<Void> {
+        base.rx.contentOffset
+            .distinctUntilChanged()
+            .map { [unowned base] offset -> Bool in
+                guard offset.y > 0 else { return false }
+                let contentSizeHeight = base.contentSize.height
+                let viewHeight = base.frame.height
+                return offset.y >= contentSizeHeight - viewHeight
+            }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .map { _ in }
     }
 }

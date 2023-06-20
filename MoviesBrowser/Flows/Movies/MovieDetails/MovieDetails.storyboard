@@ -21,23 +21,24 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="tcT-Qm-0J0">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="457.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="471.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xBa-TZ-4Ms">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="457.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="471.66666666666669"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Pze-XD-7QB">
-                                                        <rect key="frame" x="40" y="45" width="334" height="280"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pze-XD-7QB">
+                                                        <rect key="frame" x="40" y="45" width="334" height="294"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H81-pd-duq">
-                                                                <rect key="frame" x="99.666666666666657" y="0.0" width="135" height="201"/>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="H81-pd-duq">
+                                                                <rect key="frame" x="99.666666666666657" y="1.6666666666666572" width="135" height="198"/>
+                                                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="135" id="YRG-2c-EfC"/>
                                                                     <constraint firstAttribute="height" constant="201" id="oc2-M6-mTR"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-CF-sGo">
-                                                                <rect key="frame" x="143" y="207" width="48" height="73"/>
+                                                                <rect key="frame" x="143" y="221" width="48" height="73"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-zy-rZJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="21.666666666666668"/>
@@ -62,7 +63,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hnp-b9-bHn">
-                                                        <rect key="frame" x="40" y="345" width="334" height="112.66666666666669"/>
+                                                        <rect key="frame" x="40" y="359" width="334" height="112.66666666666669"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-3U-cJ8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="19.333333333333332"/>
@@ -128,6 +129,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photo.artframe" catalog="system" width="128" height="93"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

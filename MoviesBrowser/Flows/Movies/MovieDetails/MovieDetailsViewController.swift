@@ -13,12 +13,16 @@ enum MovieDetails: Storyboard {
 }
 
 class MovieDetailsViewController: UIViewController {
-    @IBOutlet private var coverImageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var metadataLabel: UILabel!
     @IBOutlet private var descriptionLabel: UILabel!
     @IBOutlet private var genresStackView: UIStackView!
     @IBOutlet private var ratingLabel: UILabel!
+    @IBOutlet private var coverImageView: UIImageView! {
+        didSet {
+            setupShadow()
+        }
+    }
 
     var viewModel: MovieDetailsViewModel?
     private var disposeBag = DisposeBag()
@@ -52,6 +56,7 @@ class MovieDetailsViewController: UIViewController {
         viewModel.releaseDate.bind(to: metadataLabel.rx.text).disposed(by: disposeBag)
         viewModel.rating.bind(to: ratingLabel.rx.text).disposed(by: disposeBag)
         viewModel.posterUrl
+            .compactMap { $0 }
             .flatMapLatest { MBImageResolver(url: $0).asObservable() }
             .bind(to: coverImageView.rx.image)
             .disposed(by: disposeBag)
@@ -67,5 +72,13 @@ class MovieDetailsViewController: UIViewController {
             .map { !$0 }
             .bind(to: viewModel.setFavoriteSubject)
             .disposed(by: disposeBag)
+    }
+
+    private func setupShadow() {
+        coverImageView.backgroundColor = .white
+        coverImageView.layer.shadowColor = UIColor.black.cgColor
+        coverImageView.layer.shadowOpacity = 0.5
+        coverImageView.layer.shadowOffset = .zero
+        coverImageView.layer.shadowRadius = 5
     }
 }

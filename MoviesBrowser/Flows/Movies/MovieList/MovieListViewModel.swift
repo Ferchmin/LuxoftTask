@@ -13,12 +13,13 @@ struct MovieListViewModel {
 
     // in
     let reloadSubject = PublishSubject<Void>()
-    let loadMoreSubject = PublishSubject<Int>()
+    let loadMoreSubject = PublishSubject<Void>()
+    let searchQuerySubject = PublishSubject<String>()
 
     // out
     var title: Observable<String> { .just("Now playing") }
     var dataSource: Observable<[AnimatableSectionModel<String, MovieCellViewModel>]> {
-        Observable.combineLatest(moviesSubject.distinctUntilChanged(),
+        Observable.combineLatest(dataLoader.movies.distinctUntilChanged(),
                                  favoritesRepository.favorites.distinctUntilChanged())
             .map { models, favorites in
                 models.map { MovieCellViewModel(model: $0,
@@ -28,7 +29,8 @@ struct MovieListViewModel {
     }
 
     private let favoritesRepository: FavoritesRepositoryProtocol
-    private let moviesSubject = BehaviorSubject<[MBMovie]>(value: [])
+    private let dataLoader = MovieListDataLoader()
+
     private let disposeBag = DisposeBag()
 
     init(favoritesRepository: FavoritesRepositoryProtocol) {
@@ -37,10 +39,14 @@ struct MovieListViewModel {
     }
 
     private func setupBinding() {
-        let movies = reloadSubject
-            .flatMapLatest { MBRequest(query: NowPlayingQuery()).asObservable() }
-            .map { $0.movies }
-
-        movies.bind(to: moviesSubject).disposed(by: disposeBag)
+        loadMoreSubject
+            .map { .loadMore }
+            .bind(to: dataLoader.loadSubject)
+            .disposed(by: disposeBag)
+        reloadSubject
+            .map { .loadFirstPage }
+            .bind(to: dataLoader.loadSubject)
+            .disposed(by: disposeBag)
+        searchQuerySubject.bind(to: dataLoader.searchQuerySubject).disposed(by: disposeBag)
     }
 }

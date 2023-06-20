@@ -17,21 +17,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="5H2-9l-CjD">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PxE-oh-D0F" id="3mI-2q-OtM"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Srd-PN-qJD">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WiG-Ij-av7"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="5H2-9l-CjD" firstAttribute="top" secondItem="WiG-Ij-av7" secondAttribute="top" id="24P-yE-i0v"/>
+                            <constraint firstItem="5H2-9l-CjD" firstAttribute="trailing" secondItem="WiG-Ij-av7" secondAttribute="trailing" id="Fao-5c-Qbs"/>
                             <constraint firstAttribute="bottom" secondItem="Srd-PN-qJD" secondAttribute="bottom" id="KQ9-sd-HkG"/>
+                            <constraint firstItem="5H2-9l-CjD" firstAttribute="leading" secondItem="WiG-Ij-av7" secondAttribute="leading" id="UOd-nE-gC2"/>
                             <constraint firstItem="WiG-Ij-av7" firstAttribute="trailing" secondItem="Srd-PN-qJD" secondAttribute="trailing" id="WwT-1E-vHI"/>
-                            <constraint firstItem="Srd-PN-qJD" firstAttribute="top" secondItem="WiG-Ij-av7" secondAttribute="top" id="XF9-xN-MYb"/>
+                            <constraint firstItem="Srd-PN-qJD" firstAttribute="top" secondItem="5H2-9l-CjD" secondAttribute="bottom" id="XF9-xN-MYb"/>
                             <constraint firstItem="Srd-PN-qJD" firstAttribute="leading" secondItem="WiG-Ij-av7" secondAttribute="leading" id="qqJ-bi-gbh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="5H2-9l-CjD" id="94S-mT-geU"/>
                         <outlet property="tableView" destination="Srd-PN-qJD" id="N2m-I3-tWr"/>
                     </connections>
                 </viewController>

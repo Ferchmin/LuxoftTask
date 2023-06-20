@@ -71,16 +71,11 @@ enum MBError: Error {
 }
 
 extension MBRequest {
-    func asObservable() -> Observable<Query.ResultType> {
+    func asObservable() -> Observable<Result<Query.ResultType, Error>> {
         Observable.create { observer in
             self.send { result in
-                switch result {
-                case .failure(let error):
-                    observer.onError(error)
-                case .success(let value):
-                    observer.onNext(value)
-                    observer.onCompleted()
-                }
+                observer.onNext(result)
+                observer.onCompleted()
             }
             return Disposables.create {
                 self.cancel()
