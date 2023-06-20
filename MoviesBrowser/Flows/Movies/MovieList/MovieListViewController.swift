@@ -32,11 +32,7 @@ class MovieListViewController: UIViewController, UISearchBarDelegate {
 
         guard let viewModel = viewModel else { return }
         setup(with: viewModel)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel?.reloadSubject.onNext(())
+        viewModel.reloadSubject.onNext(())
     }
 
     private typealias DataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MovieCellViewModel>>

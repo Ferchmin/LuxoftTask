@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E59CF1392A41B1FD0019F9A0 /* MBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CF1382A41B1FD0019F9A0 /* MBError.swift */; };
+		E59CF13B2A41B20A0019F9A0 /* MBMovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CF13A2A41B20A0019F9A0 /* MBMovieResponse.swift */; };
 		E5DEE4402A40955300353CD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DEE43F2A40955300353CD7 /* AppDelegate.swift */; };
 		E5DEE4472A40955300353CD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5DEE4452A40955300353CD7 /* Main.storyboard */; };
 		E5DEE4492A40955500353CD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5DEE4482A40955500353CD7 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E59CF1382A41B1FD0019F9A0 /* MBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBError.swift; sourceTree = "<group>"; };
+		E59CF13A2A41B20A0019F9A0 /* MBMovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBMovieResponse.swift; sourceTree = "<group>"; };
 		E5DEE43C2A40955300353CD7 /* MoviesBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5DEE43F2A40955300353CD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5DEE4462A40955300353CD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -137,8 +141,6 @@
 				E5DEE46B2A409BFC00353CD7 /* Utils */,
 				E5DEE4732A40BFFD00353CD7 /* Flows */,
 				E5DEE43F2A40955300353CD7 /* AppDelegate.swift */,
-				E5DEE4452A40955300353CD7 /* Main.storyboard */,
-				E5DEE44A2A40955500353CD7 /* LaunchScreen.storyboard */,
 				E5DEE4632A40974600353CD7 /* Resources */,
 			);
 			path = MoviesBrowser;
@@ -163,6 +165,8 @@
 		E5DEE4632A40974600353CD7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5DEE4452A40955300353CD7 /* Main.storyboard */,
+				E5DEE44A2A40955500353CD7 /* LaunchScreen.storyboard */,
 				E5DEE44D2A40955500353CD7 /* Info.plist */,
 				E5DEE4482A40955500353CD7 /* Assets.xcassets */,
 			);
@@ -175,6 +179,7 @@
 				E5DEE4652A40979800353CD7 /* MBQuery.swift */,
 				E5DEE4672A40987100353CD7 /* MBRequest.swift */,
 				E5DEE4692A40996400353CD7 /* MBImageResolver.swift */,
+				E59CF1382A41B1FD0019F9A0 /* MBError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 		E5DEE4702A409C4400353CD7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E59CF13A2A41B20A0019F9A0 /* MBMovieResponse.swift */,
 				E5DEE4712A409C5400353CD7 /* MBMovie.swift */,
 			);
 			path = Model;
@@ -375,9 +381,11 @@
 			files = (
 				E5DEE4662A40979800353CD7 /* MBQuery.swift in Sources */,
 				E5DEE4982A40C87C00353CD7 /* Storyboard.swift in Sources */,
+				E59CF13B2A41B20A0019F9A0 /* MBMovieResponse.swift in Sources */,
 				E5DEE4822A40C14500353CD7 /* MovieCell.swift in Sources */,
 				E5DEE46D2A409C0800353CD7 /* LoadableCell.swift in Sources */,
 				E5DEE4682A40987100353CD7 /* MBRequest.swift in Sources */,
+				E59CF1392A41B1FD0019F9A0 /* MBError.swift in Sources */,
 				E5ED402E2A41AD77004CE9EC /* MovieListDataLoader.swift in Sources */,
 				E5DEE47B2A40C02800353CD7 /* MovieListViewController.swift in Sources */,
 				E5DEE48F2A40C7EF00353CD7 /* Coordinator.swift in Sources */,

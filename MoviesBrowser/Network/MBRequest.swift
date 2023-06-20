@@ -14,19 +14,15 @@ class MBRequest<Query: MBQuery> {
     private var task: URLSessionDataTask?
 
     private var request: URLRequest {
-        guard var components = URLComponents(url: query.url, resolvingAgainstBaseURL: false) else {
-            fatalError("Unable to create URL components")
+        var url: URL?
+        if var components = URLComponents(url: query.url, resolvingAgainstBaseURL: false) {
+            components.queryItems = query.allParameters.map {
+                URLQueryItem(name: $0, value: String(describing: $1))
+            }
+            url = components.url
         }
 
-        components.queryItems = query.allParameters.map {
-            URLQueryItem(name: $0, value: String(describing: $1))
-        }
-
-        guard let url = components.url else {
-            fatalError("Could not get url")
-        }
-
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: url ?? query.url)
         request.httpMethod = query.method.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request
@@ -64,10 +60,6 @@ class MBRequest<Query: MBQuery> {
     init(query: Query) {
         self.query = query
     }
-}
-
-enum MBError: Error {
-    case noData
 }
 
 extension MBRequest {

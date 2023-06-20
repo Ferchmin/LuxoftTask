@@ -20,7 +20,3 @@ extension Storyboard {
         return storyboard.instantiateInitialViewController() as! InitialControllerType
     }
 }
-
-protocol StoryboardLoader {
-
-}

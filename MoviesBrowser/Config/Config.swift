@@ -12,7 +12,6 @@ struct Config {
     static let imageBaseUrl = "https://image.tmdb.org/t/p/w500"
 
     static let apiKey = "581158870b0759a89b6770163d7ac138"
-    static let apiAccessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODExNTg4NzBiMDc1OWE4OWI2NzcwMTYzZDdhYzEzOCIsInN1YiI6IjY0OTA2MmQxYzJmZjNkMDEzOWFmNjQwMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CngoNwu6JRnW5N9L4i7wGaApKlgabJW7s_SmixP_rBc"
 
     static var baseUrl: URL {
         guard let url = URL(string: apiBaseUrl) else {
